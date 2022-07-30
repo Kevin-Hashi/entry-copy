@@ -82,7 +82,7 @@ window.addEventListener('load', function (event) {
             }
             reader.readAsDataURL(blob);
         });
-        setTimeout(Scan, 50);
+        setTimeout(Scan, 50, false);
     }
     Quagga.onDetected(function (result) {
         if (DetectedCode == result.codeResult.code) {
