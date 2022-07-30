@@ -33,7 +33,7 @@ window.addEventListener('load', function (event) {
     jan = document.getElementById("jan");
 
     navigator.mediaDevices.getUserMedia({
-        "audio": false, "video": { "facingMode": "enviroment", "width": { "ideal": 640 }, "height": { "ideal": 480 } }
+        "audio": false, "video": { "facingMode": "environment", "width": { "ideal": 640 }, "height": { "ideal": 480 } }
     }).then(function (stream) {
         video.srcObject = stream;
         setTimeout(Scan, 500, true);
