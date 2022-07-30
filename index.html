@@ -49,7 +49,7 @@ window.addEventListener('load', function (event) {
         if (first) {
             //選択された幅高さ
             width= video.videoWidth;
-            heigth = video.videoHeight;
+            height = video.videoHeight;
             //画面上の表示サイズ
             prev.style.width = (width/ 2) + "px";
             prev.style.height = (heigth / 2) + "px";
@@ -57,9 +57,9 @@ window.addEventListener('load', function (event) {
             prev.setAttribute("width", w);
             prev.setAttribute("height", h);
             mwidth= width* 0.5;
-            mheigth = width* 0.2;
+            height = width* 0.2;
             x1 = (width- mw) / 2;
-            y1 = (heigth - mh) / 2;
+            y1 = (height - mh) / 2;
         }
         prev_ctx.drawImage(video, 0, 0, w, h);
         prev_ctx.beginPath();
