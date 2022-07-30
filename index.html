@@ -31,34 +31,34 @@ window.addEventListener('load', function (event) {
     tmp_ctx = tmp.getContext("2d");
     jan = document.getElementById("jan");
 
-    //カメラ使用の許可ダイアログが表示される
+
     navigator.mediaDevices.getUserMedia(
-        //マイクはオフ, カメラの設定   背面カメラを希望する 640×480を希望する
-        { "audio": false, "video": { "facingMode": "environment", "width": { "ideal": 960 }, "height": { "ideal": 640 } } }
-    ).then( //許可された場合
+
+        { "audio": false, "video": { "facingMode": "environment", "width": { "ideal": 640 }, "height": { "ideal": 480 } } }
+    ).then(
         function (stream) {
             video.srcObject = stream;
-            //0.5秒毎にスキャンする
+
             setTimeout(Scan, 500, true);
         }
-    ).catch( //許可されなかった場合
+    ).catch(
         function (err) { jan.value += err + '\n'; }
     );
 
     function Scan(first) {
         if (first) {
-            //選択された幅高さ
-            width= video.videoWidth;
+
+            width = video.videoWidth;
             height = video.videoHeight;
-            //画面上の表示サイズ
-            prev.style.width = (width/ 2) + "px";
+
+            prev.style.width = (width / 2) + "px";
             prev.style.height = (height / 2) + "px";
-            //内部のサイズ
+
             prev.setAttribute("width", width);
             prev.setAttribute("height", height);
-            mwidth= width* 0.5;
-            mheight = width* 0.2;
-            x1 = (width- mwidth) / 2;
+            mwidth = width * 0.5;
+            mheight = width * 0.2;
+            x1 = (width - mwidth) / 2;
             y1 = (height - mheight) / 2;
         }
         prev_ctx.drawImage(video, 0, 0, width, height);
@@ -77,7 +77,7 @@ window.addEventListener('load', function (event) {
                 let config = {
                     decoder: {
                         readers: ["ean_reader", "ean_8_reader"],
-                        multiple: false, //同時に複数のバーコードを解析しない
+                        multiple: false,
                     },
                     locator: { patchSize: "large", halfSample: false },
                     locate: false,
@@ -91,14 +91,14 @@ window.addEventListener('load', function (event) {
     }
 
     Quagga.onDetected(function (result) {
-        //読み取り誤差が多いため、3回連続で同じ値だった場合に成功とする
-        if (false&&DetectedCode == result.codeResult.code) {
+
+        if (DetectedCode == result.codeResult.code) {
             DetectedCount++;
         } else {
             DetectedCount = 0;
             DetectedCode = result.codeResult.code;
         }
-        if (true||DetectedCount >= 2) {
+        if (DetectedCount >= 3) {
             console.log(result.codeResult.code);
             jan.value += result.codeResult.code + '\n';
             jan.scrollTop = jan.scrollHeight;
