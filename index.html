@@ -52,24 +52,24 @@ window.addEventListener('load', function (event) {
             height = video.videoHeight;
             //画面上の表示サイズ
             prev.style.width = (width/ 2) + "px";
-            prev.style.height = (heigth / 2) + "px";
+            prev.style.height = (height / 2) + "px";
             //内部のサイズ
-            prev.setAttribute("width", w);
-            prev.setAttribute("height", h);
+            prev.setAttribute("width", width);
+            prev.setAttribute("height", height);
             mwidth= width* 0.5;
             height = width* 0.2;
-            x1 = (width- mw) / 2;
-            y1 = (height - mh) / 2;
+            x1 = (width- mwidth) / 2;
+            y1 = (height - mheight) / 2;
         }
-        prev_ctx.drawImage(video, 0, 0, w, h);
+        prev_ctx.drawImage(video, 0, 0, width, height);
         prev_ctx.beginPath();
         prev_ctx.strokeStyle = "rgb(255,0,0)";
         prev_ctx.lineWidth = 2;
-        prev_ctx.rect(x1, y1, mw, mh);
+        prev_ctx.rect(x1, y1, mwidth, mheight);
         prev_ctx.stroke();
-        tmp.setAttribute("width", mw);
-        tmp.setAttribute("height", mh);
-        tmp_ctx.drawImage(prev, x1, y1, mw, mh, 0, 0, mw, mh);
+        tmp.setAttribute("width", mwidth);
+        tmp.setAttribute("height", mheight);
+        tmp_ctx.drawImage(prev, x1, y1, mwidth, mheight, 0, 0, mwidth, mheight);
 
         tmp.toBlob(function (blob) {
             let reader = newidthFileReader();
