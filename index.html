@@ -36,7 +36,7 @@ window.addEventListener('load', function (event) {
         "audio": false, "video": { "facingMode": "enviroment", "width": { "ideal": 640 }, "height": { "ideal": 480 } }
     }).then(function (stream) {
         video.srcObject = stream;
-        setTimeout(Scan, 5, true);
+        setTimeout(Scan, 500, true);
     }
     ).catch(
         function (err) { jan.value += err + '\n'; }
@@ -82,7 +82,7 @@ window.addEventListener('load', function (event) {
             }
             reader.readAsDataURL(blob);
         });
-        setTimeout(Scan, 50, false);
+        setTimeout(Scan, 50);
     }
     Quagga.onDetected(function (result) {
         if (DetectedCode == result.codeResult.code) {
