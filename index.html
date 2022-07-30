@@ -36,7 +36,7 @@ window.addEventListener('load', function (event) {
         "audio": false, "video": { "facingMode": "enviroment", "width": { "ideal": 640 }, "height": { "ideal": 480 } }
     }).then(function (stream) {
         video.srcObject = stream;
-        setTimeout(Scan, 500, true);
+        setTimeout(Scan, 5, true);
     }
     ).catch(
         function (err) { jan.value += err + '\n'; }
